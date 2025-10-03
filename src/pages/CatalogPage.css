@@ -1,0 +1,349 @@
+:root {
+  --halagos-dark: #333333;
+  --halagos-pink: #ec7a95;
+  /* Rosa principal */
+  --halagos-pink-darker: #ec7694;
+  --halagos-gray: #6c757d;
+  --halagos-light-pink-bg: #fdf5f7;
+  /* Rosa muy claro de fondo de admin/tarjetas */
+  --halagos-pink-gradient-start: #f7a9bb;
+  --halagos-pink-gradient-end: #f38ca4;
+  --transition-speed: 0.3s;
+}
+
+body{
+  margin: 1rem;
+  background: linear-gradient(rgba(250, 210, 210, 0.801),
+        rgba(255, 255, 255, 0.322)),
+      url('/assets/halagos.png') center/cover no-repeat;
+
+}
+
+/* Contenedor del encabezado con el degradado y las curvas */
+.catalog-header-bg {
+ 
+  background: var(--halagos-light-pink-bg);
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  
+}
+
+
+/* MEDIA QUERY: Escritorio */
+@media (min-width: 768px) {
+  .catalog-header-stripe {
+    padding: 2rem 1rem;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  .catalog-title {
+    font-size: 3rem;
+  }
+}
+
+/* ======================================================= */
+/* LAYOUT Y FILTROS (MOBILE FIRST) */
+/* ======================================================= */
+
+.catalog-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  
+}
+
+/* FILTROS */
+.catalog-filters {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-button {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--halagos-pink);
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--halagos-pink);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+  background: var(--halagos-pink);
+  color: white;
+  border-color: var(--halagos-pink);
+}
+
+@media (min-width: 768px) {
+  .catalog-container {
+    max-width: 1200px;
+    padding: 1rem;
+  }
+
+  .catalog-filters {
+    justify-content: center;
+    overflow-x: hidden;
+  }
+}
+
+/* ======================================================= */
+/* GRID DE PRODUCTOS (CARD) */
+/* ======================================================= */
+
+.products-grid {
+  display: grid;
+  /* En móvil, 2 columnas que se adaptan */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.527);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  padding: 0.8rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-wrapper {
+  width: 100%;
+  height: 200px;
+  /* Altura ajustada para móvil */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.product-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 5%;
+}
+
+.product-name {
+  margin: 0.5rem 0 0.2rem 0;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--halagos-dark);
+}
+
+.product-price {
+  font-size: 0.95rem;
+  color: var(--halagos-gray);
+  margin-bottom: 0.6rem;
+}
+
+.product-link {
+  background: var(--halagos-pink);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  font-size: 0.9rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.product-link:hover {
+  background: var(--halagos-pink-darker);
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-image-wrapper {
+    height: 240px;
+    /* Altura mayor en escritorio */
+  }
+
+  .product-name {
+    font-size: 1.2rem;
+  }
+}
+
+/* ======================================================= */
+/* PAGINACIÓN 
+/* ======================================================= */
+
+.pagination-container {
+  display: flex;
+  /* Centrado en desktop, pero mejor control en mobile */
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+  padding: 1rem 0;
+  /* Más padding para separarlo del contenido */
+  border-top: none;
+  /* Quitamos el borde superior para el estilo más limpio de la imagen */
+  /* El fondo rosa claro de la imagen debe provenir del contenedor padre si es un panel */
+}
+
+/* Información de la página: "Página 1 de 2 • 5 productos" */
+.pagination-info {
+  font-size: 0.95rem;
+  color: var(--halagos-dark);
+  /* Color oscuro para el texto */
+  font-weight: 500;
+  margin-right: 1.5rem;
+  /* Separación del texto a los botones */
+  display: none;
+  /* Oculto en mobile por defecto, visible en desktop */
+}
+
+/* Controles (Botones y números) */
+.pagination-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Botones de Anterior y Siguiente */
+.pagination-button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all var(--transition-speed) ease;
+  min-width: 90px;
+  /* Ancho fijo para que se vean bien */
+  text-align: center;
+}
+
+/* Botón Siguiente (activo) */
+.pagination-button:not(:disabled):last-child {
+  background: var(--halagos-pink);
+  color: white;
+}
+
+.pagination-button:not(:disabled):last-child:hover {
+  background: var(--halagos-pink-darker);
+  transform: translateY(-1px);
+}
+
+/* Botones deshabilitados (como 'Anterior' en la imagen) */
+.pagination-button:disabled {
+  /* Fondo rosa muy claro con borde */
+  background: rgba(243, 140, 164, 0.15);
+  /* Equivalente al color pálido de la imagen */
+  color: var(--halagos-pink);
+  /* Letras rosas */
+  cursor: not-allowed;
+  transform: none;
+  opacity: 1;
+  /* Aseguramos la visibilidad */
+}
+
+/* Botones de número */
+.pagination-numbers {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.page-number {
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-speed) ease;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Número NO activo */
+.page-number:not(.active) {
+  border: 1px solid var(--halagos-pink);
+  /* Borde rosa */
+  color: var(--halagos-pink);
+  /* Texto rosa */
+}
+
+/* Número ACTIVO */
+.page-number.active {
+  background: var(--halagos-pink);
+  /* Fondo rosa sólido */
+  border: 1px solid var(--halagos-pink);
+  /* Borde rosa sólido */
+  color: white;
+  pointer-events: none;
+}
+
+/* MEDIA QUERY: Mobile */
+@media (max-width: 767px) {
+  .pagination-container {
+    /* En mobile, justificar al centro y reducir el gap */
+    gap: 0.4rem;
+    padding: 1rem 0;
+  }
+
+  .pagination-button {
+    min-width: 70px;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .page-number {
+    min-width: 35px;
+    padding: 0.5rem 0.7rem;
+  }
+}
+
+/* MEDIA QUERY: Escritorio */
+@media (min-width: 768px) {
+  .pagination-container {
+    justify-content: space-between;
+    /* Volver a justificar entre el info y los botones */
+  }
+
+  .pagination-info {
+    display: block;
+    /* Mostrar la información de página */
+  }
+}
+
+/* ======================================================= */
+/* 5. ESTADO VACÍO Y CARGA */
+/* ======================================================= */
+
+.empty-state,
+.loading-text {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--halagos-gray);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state-text {
+  font-size: 1.1rem;
+}
